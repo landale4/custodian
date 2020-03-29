@@ -1,3 +1,0 @@
-policies:
-  - name: aws-vpcs
-    resource: aws.vpc
