@@ -5,7 +5,7 @@ policies:
       - "tag:MailerTest": absent
     actions:
       - type: notify
-        template: default.html
+        template: templates/default.html
         priority_header: '2'
         subject: testing the c7n mailer with default.html
         to:
