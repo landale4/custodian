@@ -34,7 +34,7 @@ jobs:
       run: mkdir output
  
     - name: Install venv
-      run: python3 -m venv custodian
+      run: apt-get install python3-venv
     
     - name: Activate custodian
       run: source custodian/bin/activate
