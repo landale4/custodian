@@ -1,0 +1,15 @@
+policies:
+  - name: ec2-tag-normalize-application
+    description: Normalizes application tag
+    resource: ec2
+    query:
+      - instance-state-name: running
+    filters:
+      - type: value
+        key: "tag:application"
+        value: jira
+        op: regex
+    actions:
+      - type: tag
+        key: application
+        value: "jira"

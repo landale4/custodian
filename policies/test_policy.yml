@@ -1,0 +1,15 @@
+policies:
+  - name: c7n-mailer-test
+    resource: sqs
+    filters:
+      - "tag:MailerTest": absent
+    actions:
+      - type: notify
+        template: default.html
+        priority_header: '2'
+        subject: testing the c7n mailer with default.html
+        to:
+          - landale4@gmail.com
+        transport:
+          type: sqs
+          queue: https://sqs.us-east-1.amazonaws.com/380112666808/custodian-mail-queue

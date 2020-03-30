@@ -1,0 +1,31 @@
+policies:
+  - name: public-ips-found
+    resource: ec2
+    description: |
+      If an EC2 instance currently exists with a public IP attached
+      it will notify via Email unless it is approved.
+    filters:
+      - type: value
+        key: "PublicIpAddress"
+        value: not-null
+      # - not:
+      #    - type: value
+      #      key: tag:Name
+      #      op: regex
+      #      value: ^(appname?)\w+
+    actions:
+      - type: notify
+        template: default.html
+        priority_header: 2
+        subject: "EC2 - Existing Public IP Found - [custodian {{ account }} - {{ region }}]"
+        violation_desc: "Public IP Addresses Found:"
+        action_desc: "Actions Taken: Notify Only"
+        to:
+          - landale4@gmail.com 
+          # - tag:OwnerContact
+        # owner_absent_contact:
+        #   - webadmin@ucoc.email
+        transport:
+          type: sqs
+          queue: https://sqs.us-east-1.amazonaws.com/380112666808/custodian-mail-queue
+          region: us-east-1
