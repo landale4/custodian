@@ -48,6 +48,8 @@ jobs:
       run: ls -la
     
     - name: Activate custodian
-      run: "source custodian/bin/activate;" + "custodian schema ec2.actions"
+      run: |
+      "source custodian/bin/activate" 
+      "custodian schema ec2.actions"
     
       
