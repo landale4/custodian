@@ -46,7 +46,7 @@ jobs:
     
     - name: Activate custodian
       run: |
-        source custodian/bin/activate
-        custodian schema ec2.actions
+        "source custodian/bin/activate"
+        "custodian schema ec2.actions"
     
       
