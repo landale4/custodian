@@ -19,7 +19,13 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-      uses: docker://cloud-custodian/cloud-custodian/mailer
+      
+    - name: Build mailer env
+      id: build
+      uses: docker/build-action@v1
+      with:
+        repository: cloud-custodian/cloud-custodian/mailer
+        tags: v1
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
