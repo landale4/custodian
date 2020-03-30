@@ -42,10 +42,7 @@ jobs:
       run: ls -la
     
     - name: See contents of custodian
-      run: cd custodian
-
-    - name: See working directory
-      run: ls -la
+      run: ls -la ./custodian
     
     - name: Activate custodian
       run: |
