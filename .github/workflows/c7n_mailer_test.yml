@@ -35,6 +35,9 @@ jobs:
     - name: Install venv
       run: sudo apt-get install python3-venv
     
+    - name: Install custodian
+      run: python3 -m venv custodian
+    
     - name: See working directory
       run: ls -la
     
