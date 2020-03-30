@@ -22,7 +22,6 @@ jobs:
       
     - name: Build mailer env
       uses: docker://cloudcustodian/mailer
-      run: mkdir output
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
@@ -32,5 +31,6 @@ jobs:
         aws-region: us-east-1
 
     - name: Run Policy
+      run: mkdir output
       run: |
         "c7n-mailer -c ../templates/mailer.yml --run && custodian run --output-dir=. ../policies/mailer-test-policy.yml  --verbose --cache-period=0"
