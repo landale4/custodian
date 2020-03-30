@@ -19,9 +19,8 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-      
-    - name: Build mailer env
-      uses: docker://cloudcustodian/c7n
+      with:
+        repository: 'cloud-custodian/cloud-custodian.git'
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
