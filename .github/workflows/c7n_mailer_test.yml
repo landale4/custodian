@@ -42,7 +42,7 @@ jobs:
       run: pip install c7n
     
     - name: See working directory
-      run: ls -la
+      run: "ls -la $GITHUB_WORKSPACE"
     
     - name: See contents of custodian
       run: ls -la ./custodian
@@ -51,7 +51,7 @@ jobs:
       run: ls -la ./custodian/bin
       
     - name: Activate custodian
-      run: source custodian/bin/activate
+      run: source "$GITHUB_WORKSPACE/custodian/bin/activate"
  
     - name: run custodian
       run: custodian schema ec2.actions
