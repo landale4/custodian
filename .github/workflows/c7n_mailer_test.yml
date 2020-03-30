@@ -38,6 +38,9 @@ jobs:
     - name: Install custodian
       run: python3 -m venv custodian
     
+    - name: Install c7n
+      run: pip install c7n
+    
     - name: See working directory
       run: ls -la
     
