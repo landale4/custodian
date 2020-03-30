@@ -43,10 +43,13 @@ jobs:
     
     - name: See contents of custodian
       run: ls -la ./custodian
-    
-    - name: Activate custodian
-      run: |
-        "source custodian/bin/activate"
-        "custodian schema ec2.actions"
+
+    - name: See contents of custodian
+      run: ls -la ./custodian/bin
+      
+#     - name: Activate custodian
+#       run: |
+#         "source custodian/bin/activate"
+#         "custodian schema ec2.actions"
     
       
