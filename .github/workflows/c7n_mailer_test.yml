@@ -21,7 +21,7 @@ jobs:
       uses: actions/checkout@v2
       
     - name: Build mailer env
-      uses: docker://cloudcustodian/mailer
+      uses: docker://cloudcustodian/c7n
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
@@ -33,9 +33,7 @@ jobs:
     - name: Create output directory
       run: mkdir output
  
-    - name: Show working directory
-      run: pwd
+    - name: Is Python installed?
+      run: python3 --version
       
-    - name: List contents
-      run: ls -la
       
