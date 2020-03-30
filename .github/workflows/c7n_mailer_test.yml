@@ -47,10 +47,10 @@ jobs:
     - name: See working directory
       run: ls -la
     
-#     - name: Activate custodian
-#       run: "source custodian/bin/activate"
+    - name: Activate custodian
+      run: "source custodian/bin/activate"
     
-#     - name: Check custodian schema
-#       run: "custodian schema ec2.actions"
+    - name: Check custodian schema
+      run: "custodian schema ec2.actions"
       
       
