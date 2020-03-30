@@ -34,5 +34,4 @@ jobs:
       run: mkdir output
  
     - name: Run Policy
-      run: |
-        "c7n-mailer -c ../templates/mailer.yml --run && custodian run --output-dir=. ../policies/mailer-test-policy.yml  --verbose --cache-period=0"
+      run: aws s3 ls
