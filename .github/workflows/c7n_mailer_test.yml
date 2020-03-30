@@ -35,10 +35,19 @@ jobs:
     - name: Install venv
       run: sudo apt-get install python3-venv
     
-    - name: Activate custodian
-      run: "source custodian/bin/activate"
+    - name: See working directory
+      run: ls -la
     
-    - name: Check custodian schema
-      run: "custodian schema ec2.actions"
+    - name: See contents of custodian
+      run: cd custodian
+
+    - name: See working directory
+      run: ls -la
+    
+#     - name: Activate custodian
+#       run: "source custodian/bin/activate"
+    
+#     - name: Check custodian schema
+#       run: "custodian schema ec2.actions"
       
       
