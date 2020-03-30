@@ -52,7 +52,7 @@ jobs:
       
     - name: Activate custodian
       run: |
-        source ./custodian/bin/activate
+        sh '. custodian/bin/activate ; ' +
         custodian schema ec2.actions
     
       
