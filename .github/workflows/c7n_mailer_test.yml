@@ -24,7 +24,7 @@ jobs:
       id: build
       uses: docker/build-action@v1
       with:
-        repository: cloud-custodian/cloud-custodian/mailer
+        repository: cloudcustodian/mailer
         tags: v1
 
     - name: Configure AWS credentials
