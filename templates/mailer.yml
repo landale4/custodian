@@ -1,0 +1,11 @@
+queue_url: https://sqs.us-east-1.amazonaws.com/380112666808/custodian-mail-queue
+role: arn:aws:iam::380112666808:role/ofi-cloudcustodian-role
+from_address: landondale@ucoc.email
+# smtp_server: email-smtp.us-east-1.amazonaws.com
+# smtp_port: 25
+# smtp_ssl: True
+region: us-east-1
+
+contact_tags:
+  - OwnerContact
+  - SupportEmail
