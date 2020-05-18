@@ -14,7 +14,7 @@ jobs:
           architecture: 'x64'
       - script: pip install --upgrade pip
         displayName: Upgrade pip
-      - script: pip install c7n c7n_azure c7n_gcp
+      - script: pip install c7n
         displayName: Install custodian
       - script: custodian validate vpc-test-policy.yaml
         displayName: Validate vpc policy file
