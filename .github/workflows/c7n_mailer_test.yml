@@ -12,15 +12,24 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  deploy:
-    name: Deploy
+  build:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-      with:
-        repository: 'cloud-custodian/cloud-custodian.git'
+      - name: Git checkout
+        uses: actions/checkout@v1
+      - name: Branch name
+        run: echo running on branch ${GITHUB_REF##*/}
+      - name: Build
+        run: docker pull cloudcustodian/c7n:${GITHUB_REF##*/} .
+#   deploy:
+#     name: Deploy
+#     runs-on: ubuntu-latest
+
+#     steps:
+#     - name: Checkout
+#       uses: actions/checkout@v2
+#       with:
+#         repository: 'cloud-custodian/cloud-custodian.git'
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
