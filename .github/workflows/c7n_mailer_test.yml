@@ -15,17 +15,12 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  build:
+  run-custodian-policy:
     runs-on: ubuntu-latest
+    name: Runs a custodian job
     steps:
       - name: Git checkout
         uses: actions/checkout@v1
-        
-      - name: Branch name
-        run: echo running on branch ${GITHUB_REF##*/}
-        
-      - name: Build
-        run: docker pull cloudcustodian/c7n:${GITHUB_REF##*/} .
         
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -33,31 +28,14 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
-
-      - name: Create output directory
-        run: mkdir output
-
-      - name: Install venv
-        run: sudo apt-get install python3-venv
-
-      - name: Install custodian
-        run: python3 -m venv custodian
-
-      - name: Install c7n
-        run: pip install c7n
-
-      - name: See working directory
-        run: "ls -la $GITHUB_WORKSPACE"
-
-      - name: See contents of custodian
-        run: ls -la ./custodian
-
-      - name: See contents of custodian
-        run: ls -la ./custodian/bin
-
-      - name: Activate custodian
-        run: source "$GITHUB_WORKSPACE/custodian/bin/activate"
-
-      - name: run custodian
-        run: custodian schema ec2.actions
+          
+      - name: Run a specific policy
+        uses: ./ # Uses an action in the root directory
+        id: policy
+        with:
+          policy-to-run: 'test_policy.yml'
+          
+      # Use the output from the `hello` step
+      - name: Get the run logs
+        run: echo "Policy results - ${{ steps.policy.outputs.run-log }}"  
       
