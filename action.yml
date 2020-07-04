@@ -1,0 +1,16 @@
+# action.yml
+name: 'custodian'
+description: 'Runs custodian policies'
+inputs:
+  policy-to-run:  # id of input
+    description: 'Policy to run'
+    required: true
+    default: 'test_policy.yml'
+outputs:
+  run-log: # id of output
+    description: 'Run logs'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.policy-to-run }}
