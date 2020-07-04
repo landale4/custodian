@@ -1,0 +1,16 @@
+# custodian.yml
+name: 'Custodian'
+description: 'Build custodian container'
+inputs:
+  test-mailer:  # id of input
+    description: 'Policy to test mailer functionality'
+    required: true
+    default: 'test_policy.yml'
+outputs:
+  results: # id of output
+    description: 'Results of custodian run'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.test-mailer }}
