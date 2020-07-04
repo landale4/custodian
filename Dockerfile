@@ -29,8 +29,7 @@ RUN rm -R tools/c7n_kube/tests
 # Install requested providers
 ARG providers="azure gcp kube"
 RUN . /usr/local/bin/activate && \
-    for pkg in $providers; do cd tools/c7n_$pkg && \
-    $HOME/.poetry/bin/poetry install && cd ../../; done
+    for pkg in $providers; do cd tools/c7n_$pkg && cd ../../; done
 
 RUN mkdir /output
 
