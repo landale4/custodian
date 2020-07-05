@@ -19,15 +19,15 @@ RUN . /usr/local/bin/activate && pip install -q wheel
 RUN . /usr/local/bin/activate && pip install -q aws-xray-sdk psutil jsonpatch
 
 # Add provider packages
-ADD tools/c7n_gcp /src/tools/c7n_gcp
-RUN rm -R tools/c7n_gcp/tests
-ADD tools/c7n_azure /src/tools/c7n_azure
-RUN rm -R tools/c7n_azure/tests_azure
+# ADD tools/c7n_gcp /src/tools/c7n_gcp
+# RUN rm -R tools/c7n_gcp/tests
+# ADD tools/c7n_azure /src/tools/c7n_azure
+# RUN rm -R tools/c7n_azure/tests_azure
 ADD tools/c7n_kube /src/tools/c7n_kube
 RUN rm -R tools/c7n_kube/tests
 
 # Install requested providers
-ARG providers="azure gcp kube"
+ARG providers="kube"
 RUN . /usr/local/bin/activate && \
     for pkg in $providers; do cd tools/c7n_$pkg && cd ../../; done
 
