@@ -33,7 +33,7 @@ jobs:
         uses: ./ # Uses an action in the root directory
         id: policy
         with:
-          policy-to-run: 'test_policy.yml'
+          policy-to-run: 's3-encrypt-bucket.yml'
           
       # Use the output from the `hello` step
       - name: Get the run logs
