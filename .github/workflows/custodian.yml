@@ -2,15 +2,15 @@
 name: 'Custodian'
 description: 'Build custodian container'
 inputs:
-  test-mailer:  # id of input
-    description: 'Policy to test mailer functionality'
+  policies-to-run:  # id of input
+    description: 'Policies to run'
     required: true
-    default: 'test_policy.yml'
+    default: 's3-encrypt-bucket.yml'
 outputs:
   results: # id of output
     description: 'Results of custodian run'
 runs:
   using: 'docker'
-  image: 'Dockerfile'
+  image: './cloud-custodian/Dockerfile'
   args:
-    - ${{ inputs.test-mailer }}
+    - ${{ inputs.policies-to-run}}
