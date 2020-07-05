@@ -30,7 +30,7 @@ jobs:
           aws-region: us-east-1
           
       - name: Run a specific policy
-        uses: ./policies # Uses an action in the root directory
+        uses: policies # Uses an action in this directory
         id: policy
         with:
           policy-to-run: 's3-encrypt-bucket.yml'
