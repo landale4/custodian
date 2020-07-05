@@ -5,7 +5,7 @@ inputs:
   policy-to-run:  # id of input
     description: 'Policy to run'
     required: true
-    default: 'test_policy.yml'
+    default: 's3-encrypt-bucket.yml'
 outputs:
   run-log: # id of output
     description: 'Run logs'
