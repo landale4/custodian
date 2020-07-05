@@ -1,6 +1,9 @@
 # custodian.yml
 name: 'Custodian'
 description: 'Build custodian container'
+on:
+  watch:
+    types: [started] 
 inputs:
   policies-to-run:  # id of input
     description: 'Policies to run'
