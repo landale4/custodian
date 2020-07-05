@@ -1,0 +1,9 @@
+policies:
+  - name: s3-bucket-encryption-off
+    resource: s3
+    region: us-east-1
+    filters:
+      - type: bucket-encryption
+        state: False
+    actions:
+      - type: set-bucket-encryption
