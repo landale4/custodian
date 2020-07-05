@@ -11,6 +11,6 @@ outputs:
     description: 'Run logs'
 runs:
   using: 'docker'
-  image: 'cloud-custodian/Dockerfile'
+  image: 'Dockerfile'
   args:
     - ${{ inputs.policy-to-run }}
