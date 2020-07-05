@@ -29,13 +29,13 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
           
-      - name: Run a specific policy
-        uses: ./ # Uses an action in the root directory
-        id: policy
-        with:
-          policy-to-run: 's3-encrypt-bucket.yml'
+#       - name: Run a specific policy
+#         uses: ./ # Uses an action in the root directory
+#         id: policy
+#         with:
+#           policy-to-run: 's3-encrypt-bucket.yml'
           
-      # Use the output from the `hello` step
+      # Log output
       - name: Get the run logs
         run: echo "Policy results - ${{ steps.policy.outputs.run-log }}"  
       
