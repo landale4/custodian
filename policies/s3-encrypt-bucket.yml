@@ -5,5 +5,5 @@ policies:
     filters:
       - type: bucket-encryption
         state: False
-    actions:
-      - type: set-bucket-encryption
+#     actions:
+#       - type: set-bucket-encryption
