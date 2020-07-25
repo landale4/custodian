@@ -1,4 +1,8 @@
 # custodian.yml
+on:
+  watch:
+    types: [started]
+
 name: 'custodian'
 description: 'Runs custodian policies'
 inputs:
