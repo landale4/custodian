@@ -1,5 +1,3 @@
 #!/bin/sh -l
 
-echo "Hello $1"
-time=$(date)
-echo "::set-output name=time::$time"
+custodian schema s3.actions.set-bucket-encryption
