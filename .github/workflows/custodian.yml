@@ -4,7 +4,7 @@ on:
     types: [started]
 
 name: 'custodian'
-description: 'Runs custodian policies'
+# description: 'Runs custodian policies'
 # inputs:
 #   policy-to-run:  # id of input
 #     description: 'Policy to run'
