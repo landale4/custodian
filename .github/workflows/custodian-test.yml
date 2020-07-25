@@ -10,4 +10,4 @@ jobs:
     - name: Check custodian schema	    
       uses: docker://cloudcustodian/c7n
       with:
-        args: "custodian schema ec2.actions"
+        args: "schema ec2.actions"
