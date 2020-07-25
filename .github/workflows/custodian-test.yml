@@ -8,6 +8,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Check custodian schema	    
-      uses: docker://cloudcustodiancustodian/c7n:latest
+      uses: docker://cloudcustodian/c7n:latest
       with:
         args: "custodian schema ec2.actions"
