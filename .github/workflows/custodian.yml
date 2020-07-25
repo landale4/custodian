@@ -5,16 +5,37 @@ on:
 
 name: 'custodian'
 description: 'Runs custodian policies'
-inputs:
-  policy-to-run:  # id of input
-    description: 'Policy to run'
-    required: true
-    default: 's3-encrypt-bucket.yml'
-outputs:
-  run-log: # id of output
-    description: 'Run logs'
-runs:
-  using: 'docker'
-  image: 'cloudcustodian/c7n'
-  args:
-    - ${{ inputs.policy-to-run }}
+# inputs:
+#   policy-to-run:  # id of input
+#     description: 'Policy to run'
+#     required: true
+#     default: 's3-encrypt-bucket.yml'
+# outputs:
+#   run-log: # id of output
+#     description: 'Run logs'
+# runs:
+#   using: 'docker'
+#   image: 'cloudcustodian/c7n'
+#   args:
+#     - ${{ inputs.policy-to-run }}
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      uses: docker://cloud-custodian/c7n
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+
+    - name: Run Policy
+      run: |
+        "custodian schema ec2.actions"
+#       "custodian run --output-dir=.  --verbose --cache-period=0 --profile ${params.AWS_PROFILE} --region ${params.AWS_REGION}"
