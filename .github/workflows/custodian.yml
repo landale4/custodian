@@ -1,19 +1,17 @@
 # custodian.yml
-name: 'Custodian'
-description: 'Build custodian container'
-on:
-  watch:
-    types: [started] 
+name: 'custodian'
+description: 'Runs custodian policies'
 inputs:
-  policies-to-run:  # id of input
-    description: 'Policies to run'
+  policy-to-run:  # id of input
+    description: 'Policy to run'
     required: true
     default: 's3-encrypt-bucket.yml'
 outputs:
-  results: # id of output
-    description: 'Results of custodian run'
+  run-log: # id of output
+    description: 'Run logs'
 runs:
   using: 'docker'
-  image: './cloud-custodian/Dockerfile'
+  image: 'cloudcustodian/c7n'
+=======
   args:
-    - ${{ inputs.policies-to-run}}
+    - ${{ inputs.policy-to-run }}
