@@ -11,6 +11,10 @@ outputs:
     description: 'Run logs'
 runs:
   using: 'docker'
+<<<<<<< HEAD
   image: 'cloudcustodian/c7n'
+=======
+  image: 'Dockerfile'
+>>>>>>> b63ce5d87c55edbf6ad12046d49b7fc77a187141
   args:
     - ${{ inputs.policy-to-run }}
