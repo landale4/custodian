@@ -20,4 +20,4 @@ jobs:
     - name: Check custodian schema
       uses: docker://cloudcustodian/c7n
       with:
-        args: "run -s out policies/s3-bucket-encryption-disabled.yml"
+        args: "run -s . policies/s3-bucket-encryption-disabled.yml"
