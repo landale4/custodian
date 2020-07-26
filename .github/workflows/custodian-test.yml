@@ -20,4 +20,4 @@ jobs:
       run: "ls -la ."
     - name: Run custodian command
       uses: docker://cloudcustodian/c7n
-      run: "run -s logs policies/s3-bucket-encryption-disabled.yml --verbose"
+      run: "run --output-dir s3://landon-custodian-logs policies/s3-bucket-encryption-disabled.yml --verbose"
