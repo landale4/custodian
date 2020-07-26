@@ -6,10 +6,10 @@ jobs:
   custodian-policy:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Configure AWS credentials
-#       uses: aws-actions/configure-aws-credentials@v1
-      uses: chrislennon/action-aws-cli@1.1
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -20,4 +20,4 @@ jobs:
     - name: Check custodian schema
       uses: docker://cloudcustodian/c7n
       with:
-        args: "run -s . ./policies/s3-bucket-encryption-disabled.yml --region us-east-1"
+        args: "run -s out policies/s3-bucket-encryption-disabled.yml"
