@@ -18,7 +18,6 @@ jobs:
       run: aws s3 ls  
     - name: View aws files
       run: "ls -la ."
-    - name: Check custodian schema
+    - name: Run custodian command
       uses: docker://cloudcustodian/c7n
-      with:
-        args: "run -s . policies/s3-bucket-encryption-disabled.yml"
+      run: "run -s logs policies/s3-bucket-encryption-disabled.yml --verbose"
