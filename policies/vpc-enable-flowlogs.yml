@@ -1,0 +1,17 @@
+policies:
+  - name: vpc-enable-flow-logs
+    resource: vpc
+    mode: 
+      type: cloudtrail
+      role: arn:aws:iam::380112666808:role/ofi-cloudcustodian-role
+      events:
+        - source: 'ec2.amazonaws.com'
+          event: CreateVpc
+          ids: "detail.responseElements.vpc.vpcId"
+    filters:
+      - type: flow-logs
+        enabled: false
+    actions:
+      - type: set-flow-log
+        DeliverLogsPermissionArn: arn:aws:iam::{account_id}:role/ofi-custodian-role
+        LogGroupName: /custodian/vpc/flowlogs/
