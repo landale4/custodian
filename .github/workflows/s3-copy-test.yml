@@ -12,13 +12,13 @@ on:
 jobs:
   s3-update:
     runs-on: ubuntu-latest
-    steps:
-    
-    - name: configure aws credentials
-      uses: tpaschalis/s3-cp-action@v0.2.0
+    steps:  
+    - uses: actions/checkout@master
+    - uses: jakejarvis/s3-sync-action@master
       with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-east-1
-        role-duration-seconds: 1200
-  
+        args: --exclude '.git*/*'
+      env:
+        AWS_S3_BUCKET: cpbucket-ldale
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS-REGION: us-east-1
