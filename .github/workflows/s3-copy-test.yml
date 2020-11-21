@@ -18,12 +18,10 @@ jobs:
       working-directory:
       run: |
       #!/usr/bin/env bash
-      regions=(us-east-1 us-west-2)
-      ls -ltra
-      # aws s3 sync ./templates/ s3://cpbucket-ldale-${region}/templates/ --exclude "*" --include "*.yaml"
-      for region in "${regions[@]}"
-      do
-         echo "${region}"          
-         bucket="cpbucket-ldale-${region}"
-         aws s3 sync ./templates/ s3://$bucket/templates/  --exclude "*" --include "*.yml"
-      done  
+        regions=(us-east-1 us-west-2)
+        for region in "${regions[@]}"
+        do
+          echo "${region}"          
+          bucket="cpbucket-ldale-${region}"
+          aws s3 sync ./templates/ s3://$bucket/templates/  --exclude "*" --include "*.yml"
+        done  
