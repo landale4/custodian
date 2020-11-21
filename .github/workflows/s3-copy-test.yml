@@ -6,16 +6,18 @@ on:
 jobs:
   s3-update:
     runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2    
+    steps:   
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
         aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-east-1   
+        aws-region: us-east-1
+        
+    - uses: actions/checkout@v2 
+      
     - name: Upload files to S3
-      working-directory:
+      working-directory: actions
       run: |
         #!/usr/bin/env bash
           regions=(us-east-1 us-west-2)
