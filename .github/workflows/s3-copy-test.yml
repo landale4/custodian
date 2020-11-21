@@ -1,24 +1,29 @@
-name: testing file uploads
-
+name: copy to multiple buckets
 on:
   watch:
     types: [started] 
 
-# on:
-#  push:
-#   branches:
-#     - master
-
 jobs:
   s3-update:
     runs-on: ubuntu-latest
-    steps:  
-    - uses: actions/checkout@master
-    - uses: jakejarvis/s3-sync-action@master
+    steps:
+    - uses: actions/checkout@v2    
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
       with:
-        args: --exclude '.git*/*'
-      env:
-        AWS_S3_BUCKET: cpbucket-ldale-ue1, cpbucket-ldale-uw2
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AWS-REGION: us-east-1, us-west-2
+        aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ env.AWS_REGION }}    
+    - name: Upload files to S3
+      working-directory:
+      run: |
+      #!/usr/bin/env bash
+      regions=(us-east-1 us-west-2)
+      ls -ltra
+      # aws s3 sync ./templates/ s3://cpbucket-ldale-${region}/templates/ --exclude "*" --include "*.yaml"
+      for region in "${regions[@]}"
+      do
+         echo "${region}"          
+         bucket="cpbucket-ldale-${region}"
+         aws s3 sync ./templates/ s3://$bucket/templates/  --exclude "*" --include "*.yml"
+      done  
