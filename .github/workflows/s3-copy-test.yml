@@ -17,11 +17,11 @@ jobs:
     - name: Upload files to S3
       working-directory:
       run: |
-      #!/usr/bin/env bash
-        regions=(us-east-1 us-west-2)
-        for region in "${regions[@]}"
-        do
-          echo "${region}"          
-          bucket="cpbucket-ldale-${region}"
-          aws s3 sync ./templates/ s3://$bucket/templates/  --exclude "*" --include "*.yml"
-        done  
+        #!/usr/bin/env bash
+          regions=(us-east-1 us-west-2)
+          for region in "${regions[@]}"
+          do
+            echo "${region}"          
+            bucket="cpbucket-ldale-${region}"
+            aws s3 sync ./templates/ s3://$bucket/templates/  --exclude "*" --include "*.yml"
+          done  
