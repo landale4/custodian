@@ -1,4 +1,5 @@
-name: copy to multiple buckets
+name: copy to multiple buckets 
+
 on:
   watch:
     types: [started] 
@@ -25,5 +26,5 @@ jobs:
           do
             echo "${region}"          
             bucket="cpbucket-ldale-${region}"
-            aws s3 sync ./templates/ s3://$bucket/templates/  --exclude "*" --include "*.yml"
+            aws s3 sync $GITHUB_WORKSPACE/templates/ s3://$bucket/templates/  --exclude "*" --include "*.yml"
           done  
