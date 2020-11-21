@@ -28,7 +28,6 @@ jobs:
     - name: Upload files to S3
       run: |
           #!/bin/bash
-           set -ex
            ls -ltra
            aws s3 sync ./templates/ s3://cpbucket-ldale/ --exclude "*" --include "*.yml"
            done  
